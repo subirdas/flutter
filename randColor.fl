@@ -1,0 +1,92 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+ 
+void main() {
+  runApp(const MyApp());
+}
+ 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Window Title Bar - Subir ',
+      home: MyHomePage(),
+    );
+  }
+}
+ 
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _MyHomePageState createState() => _MyHomePageState();
+}
+ 
+class _MyHomePageState extends State<MyHomePage> {
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Layout Design'),
+      ),
+      body: ListView(children: <Widget>[
+        Container(
+          width: 400,
+          height: 400,
+          child: CustomPaint(
+            painter: OpenPainter(),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+ 
+class OpenPainter extends CustomPainter {
+
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint1 = Paint()
+
+      ..color = Color.fromARGB(255, 230, 211, 10)
+      ..style = PaintingStyle.fill;
+
+       //canvas.drawCircle(const Offset(0, 0), 10, paint1);
+       int i1=25;
+       int j1=25;
+     
+        while (  i1 < 500 && j1 < 600) {
+ 
+
+          // ..color = Color.fromARGB(255, 234, 153, 1);
+          // ..style = PaintingStyle.stroke;
+
+          Random r1 = Random();
+          Color randColor = Color.fromARGB(255
+          , r1.nextInt(255)
+          , r1.nextInt(255)
+          , r1.nextInt(255));
+          //paint1.color =  Colors.teal;
+          paint1.color = randColor;
+          canvas.drawCircle( Offset(i1 as double, j1 as double), 10, paint1);
+
+          i1 = i1 + 25;
+          if(i1 > 400){i1 =25 ; j1=j1+25;}
+
+        }
+
+
+
+
+
+  }
+ 
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
